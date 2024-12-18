@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Request</title>
+    <script>
+        function getMovieInfo(movie) {
+            var movieName = document.getElementById("movieName");
+            var moviePoster = document.getElementById("movieImg");
+            var movieRating = document.getElementById("rating");
+
+            var xHttp = new XMLHttpRequest();
+            xHttp.onreadystatechange = function () {
+                
+                if (xHttp.readyState === 4) {
+                    document.getElementById("info").style.display = "block";
+                    document.getElementById("loader").style.display = "none";
+                    var response = JSON.parse(xHttp.responseText);
+                    
+                    var title = response.Title;
+                    movieName.innerHTML = title;
+                    movieName.style.color = "brown";
+                    movieName.style.fontSize = "x-large";
+
+                    var poster = response.Poster;
+                    moviePoster.src = poster;
+                    
+                    var rating = response.Ratings[0].Value;
+                    movieRating.innerHTML = rating;
+                    movieRating.style.fontSize = "large";
+                    movieRating.style.fontWeight = "bold";
+                    movieRating.style.color = "green";
+
+                } else {
+                    document.getElementById("info").style.display = "none";
+                    document.getElementById("loader").style.display = "block";
+                }
+            }
+           
+            var apiKey = "c429066e";
+            var baseUrl = "http://www.omdbapi.com/?";
+            var apiUrl = "t="+movie+"&apikey="+apiKey;   
+
+            xHttp.open("GET", baseUrl + apiUrl);
+            xHttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    Enter the Movie Name: <input type="text" name="t" id="movie" onblur="getMovieInfo(this.value)">
+
+    <div id="info" style="display: none;">
+        <h2>Movie Information</h2>
+        <h3 id="movieName"></h3>
+        <img id="movieImg" alt=""><br><br>
+        <span id="rating"></span><br><br>
+    </div>
+
+    <div id="loader" style="display: none;">
+        <img src="loader.gif" alt="">
+    </div>
+
+</body>
+
+</html>

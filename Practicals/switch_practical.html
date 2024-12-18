@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch_statement</title>
+    <script>
+        function doForm(op) {
+            var spanObj = document.getElementById('msg');
+            switch (op) {
+                case "home":
+                    spanObj.innerHTML = "Welcome to my Page!";
+                    spanObj.style.color="purple";
+                    break;
+
+                case "login":
+                    spanObj.innerHTML = "Login here!!";
+                    spanObj.style.color="green";
+                    break;
+
+                case "register":
+                    spanObj.innerHTML = "Register here!!";
+                    spanObj.style.color="blue";
+                    break;
+
+                case "logout":
+                    spanObj.innerHTML = "Logged out successfully!!";
+                    spanObj.style.color="yellowgreen";
+                    break;
+
+                default:
+                    spanObj.innerHTML = "Something went wrong.";
+                    spanObj.style.color="red";
+
+            }
+            spanObj.style.fontSize="x-large";
+        }
+    </script>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <br><br>
+    <span id="msg"></span> <br><br>
+    <button type="button" onclick="doForm('home')">Home</button> &nbsp;
+    <button type="button" onclick="doForm('login')">Login</button> &nbsp;
+    <button type="button" onclick="doForm('register')">Register</button> &nbsp;
+    <button type="button" onclick="doForm('logout')">Logout</button> &nbsp;
+    <button type="button" onclick="doForm('other')">Other</button> &nbsp;
+</body>
+
+</html>

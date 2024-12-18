@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        function doCalc(op) {
+            var num1, num2, result, spanObj;
+            num1 = document.getElementById('ip1').value;
+            num2 = document.getElementById('ip2').value;
+            spanObj = document.getElementById('res');
+
+
+            if (isNaN(num1) || isNaN(num2)) {
+                spanObj.innerHTML = "Please Enter a Valid Number";
+                spanObj.style.color = "red";
+
+            }
+            else {
+
+                if (op == 'add') {
+                    result = Number(num1) + Number(num2);
+
+                } else if (op == 'sub') {
+                    result = num1 - num2;
+
+                } else if (op == 'mul') {
+                    result = num1 * num2;
+
+                } else {
+                    result = num1 / num2;
+
+                }
+                spanObj.innerHTML = result;
+                spanObj.style.color = "green";
+
+
+            }
+        }
+
+    </script>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>Calculator</h1>
+    Number1: <input type="text" id="ip1"> <br><br>
+    Number2: <input type="text" id="ip2"> <br><br>
+    <button type="button" onclick="doCalc('add')">Add</button> &nbsp;
+    <button type="button" onclick="doCalc('sub')">Sub</button> &nbsp;
+    <button type="button" onclick="doCalc('mul')">Mul</button> &nbsp;
+    <button type="button" onclick="doCalc('div')">Division</button> &nbsp; <br><br>
+    Result: <span id="res" style="color: purple;">Result will appear here!!!</span>
+
+</body>
+
+</html>

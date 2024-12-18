@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array(Filter_AddGrace Marks)</title>
+    <script>
+        var marks = [86,90,74,56,62,50,96,47,69,60];
+        var result;
+        //var num = document.getElementById("addNum");
+
+        function doDisplay(){
+            var template = "<ul>";
+                for(var i=0 ; i < marks.length ; i++){
+                    template += "<li>" + marks[i] + "</li>";
+                }
+                template += "</ul>";
+                document.getElementById("list").innerHTML = template;
+        }
+        
+        function addMarks(mark){ 
+            var num = document.getElementById("addNum").value;
+            var res= mark + Number(num);
+            return res;
+        }
+
+        function addGraceMarks(){
+            result = marks.map(addMarks);
+            if(result.every(function(mark){
+                return mark<=100;
+            })){
+             document.getElementById("addGrace").innerHTML = result;
+             document.getElementById("addGrace").style.color = "green";
+            }else{
+                document.getElementById("addGrace").innerHTML = "Mark in marks array exceeds more than 100";
+                document.getElementById("addGrace").style.color = "red";
+            }
+        }
+
+        function toFilterPassedMark(mark){
+            if(document.getElementById("passedMark").checked){
+                return mark >= 60;
+            } 
+            
+        }
+         
+        function filterMark(){
+            result = marks.filter(toFilterPassedMark);
+            document.getElementById("filteredMarks").innerHTML = result;
+            document.getElementById("filteredMarks").style.color = "green";
+          }
+        
+    </script>
+</head>
+<body onload="doDisplay()">
+    <div id="list"></div>
+    <h2>Add Grace Marks</h2>
+    Number to be added: <input type="number" name="" id="addNum" onblur="addGraceMarks()"> <br><br>
+     Result: <p id="addGrace" ></p>    
+    <h2>Filter Only Passed Marks. </h2>
+    <input type="checkbox" name="" id="passedMark" onclick="filterMark()">Filter Passed Marks.  <br>
+    <p id="filteredMarks"></p>
+
+</body>
+</html>

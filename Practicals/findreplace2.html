@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replace</title>
+    <script>
+        var str = "Vaishu,arun,Arun,Sheela,Ram";
+        function doReplace() {
+            var findText = document.getElementById("findText").value;
+            var replaceText = document.getElementById("replaceText").value;
+
+            var caseInsensitive = document.getElementById("insensitive").checked;
+            var globalMatch = document.getElementById("global").checked;
+
+            if (findText && replaceText) {
+                var regexFlags = "";
+                if (caseInsensitive) {
+                    regexFlags += "i";
+                }
+                if (globalMatch) {
+                    regexFlags += "g";
+                }
+                var newStr = str.replace(new RegExp(findText, regexFlags), replaceText);
+                document.getElementById("res").innerHTML = newStr;
+                document.getElementById("res").style.color="green";
+            }else{
+                document.getElementById("res").innerHTML = "Please fill all the fields.";
+                document.getElementById("res").style.color="red";
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Find and Replace</h1>
+    <p id="name"></p>
+    Find: <input type="text" id="findText"> <br><br>
+    Replace: <input type="text" id="replaceText"> <br><br>
+
+    Case Insensitive: <input type="checkbox"  id="insensitive"> 
+    Global Match: <input type="checkbox"  id="global"> 
+
+    <br><br>
+    <button type="button" onclick="doReplace()">Replace</button> <br><br>
+
+    Result: <span id="res"></span>
+    <script>
+        document.getElementById('name').innerHTML=str;
+    </script>
+</body>
+</html>

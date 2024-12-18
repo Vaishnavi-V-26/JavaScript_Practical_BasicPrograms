@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <script>
+        var todoList = ["Attend Online class", "Finish the Assignment", "Read books", "Watch Tv", "Send E-mails"];
+        var selectedIndex ;
+        function doDisplay(arr, isSearch) {
+
+            var template = "<ul>";
+            for (var i = 0; i < arr.length; i++) {
+                if (!isSearch) {
+                    template += "<li>" + arr[i] + "  <button id='edit' onclick='doEdit(" + i + ")'> Edit </button>  <button id='delete' onclick='doDelete(" + i + ")'> Delete </button></li>";
+                } else {
+                    template += "<li>" + arr[i] + "</li>";
+                }
+            }
+            template += "</ul>";
+            document.getElementById("list").innerHTML = template;
+
+        }
+
+        function doEdit(index) {
+            document.getElementById("updateList").value = todoList[index];
+            document.getElementById("editList").style.display = "block";
+            selectedIndex = index;
+
+        }
+
+        function doUpdate() {
+            todoList.splice(selectedIndex,1,document.getElementById("updateList").value);
+            document.getElementById("editList").style.display = "none";
+            doDisplay(todoList);
+            }
+        
+
+
+        function doDelete(index) {
+            if (confirm("Are you sure want to delete this?")) {
+                todoList.splice(index, 1);
+                doDisplay(todoList);
+            }
+        }
+
+        function doSearch(searchTxt) {
+            var searchArrayList = [];
+            var count = document.getElementById("count");
+            for (var j = 0; j < todoList.length; j++) {
+                if (todoList[j].toLowerCase().includes(searchTxt.toLowerCase())) {
+                    searchArrayList.push(todoList[j]);
+
+                }
+                if (searchArrayList.length > 0) {
+                    count.innerHTML = "Found " + searchArrayList.length + " records.";
+                    count.style.color = "green";
+                } else {
+                    count.innerHTML = "Found No records.";
+                    count.style.color = "red";
+                }
+            }
+            doDisplay(searchArrayList,true);
+
+        }
+
+        function manipulateList(op) {
+            var inputList = document.getElementById("todo").value;
+            var message = document.getElementById("msg");
+            switch (op) {
+                case "push":
+                    if (inputList) {
+                        message.innerHTML = "";
+                        todoList.push(inputList);
+                       
+                    } else {
+                        message.innerHTML = "Please fill the Todo List Box.";
+                        message.style.color = "red";
+                    }
+                    break;
+
+                case "pop":
+                    if (todoList.length > 0) {
+                        message.innerHTML = "";
+                        todoList.pop();
+                        
+                    } else {
+                        message.innerHTML = "ToDo List is empty Now."
+                        message.style.color = "red";
+                    }
+                    break;
+
+                case "shift":
+                    if (todoList.length > 0) {
+                        todoList.shift();
+                        
+                    } else {
+                        message.innerHTML = "ToDo List is empty Now."
+                        message.style.color = "red";
+                    }
+                    break;
+
+                case "unShift":
+                    if (inputList) {
+                        message.innerHTML = "";
+                        todoList.unshift(inputList);
+                        
+                    } else {
+                        message.innerHTML = "Please fill the Todo List Box.";
+                        message.style.color = "red";
+                    }
+                    break;
+
+            }
+            doDisplay(todoList);
+        }
+
+
+    </script>
+    <link rel="stylesheet" href="todoList.css">
+</head>
+
+<body onload="doDisplay(todoList)">
+    <h1>My ToDo List</h1>
+    Search: <input type="text" name="" id="search" onkeyup="doSearch(this.value)"> <br>
+    <p id="count"></p>
+    <div id="list"></div>
+
+    <div id="editList" style="display: none;">
+        <h2>Edit Todo List</h2>
+        List: <input type="text" id="updateList"> 
+        <button type="button" id="update" onclick="doUpdate()">Update</button>
+    </div>
+    <br>
+    ToDo List: <input type="text" name="" id="todo"> <br><br>
+    <button type="button" id="push" onclick="manipulateList('push')">Push</button> &nbsp;
+    <button type="button" id="pop" onclick="manipulateList('pop')">Pop</button> &nbsp;
+    <button type="button" id="shift" onclick="manipulateList('shift')">Shift</button> &nbsp;
+    <button type="button" id="unshift" onclick="manipulateList('unShift')">UnShift</button> &nbsp; <br><br>
+    <p id="msg"></p>
+
+</body>
+
+</html>

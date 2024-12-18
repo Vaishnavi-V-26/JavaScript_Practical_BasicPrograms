@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Otp using Timer</title>
+    <script>
+        var timeLeft = 15;
+        var si;
+        var otp;
+        
+        function expireTime(){
+            var message = document.getElementById("msg");
+            var remainingTime = document.getElementById("remainingTime");
+            remainingTime.innerHTML = "Remaining Time: "+timeLeft+ " Seconds.";
+            remainingTime.style.color = "green";
+            timeLeft--;
+            if(timeLeft==0){
+                clearInterval(si);
+                remainingTime.innerHTML = "Time Expired.";
+                remainingTime.style.color = "red";
+                message.innerHTML = "OTP Expired. Generate a new OTP.";
+                message.style.color = "red";
+                document.getElementById("verifyBtn").disabled = true;
+                document.getElementById("resend").disabled = false;
+            }
+           
+        }
+
+        function doGenerateOtp(){
+            clearInterval(si);
+            timeLeft = 15;
+            var generatedOtp = document.getElementById("otp");
+            otp = Math.round(Math.random()*10000);
+            var strOtp = otp.toString();
+            if(strOtp.length<4){
+                otp = strOtp + "0";
+                generatedOtp.innerHTML = otp;
+            }else{
+                generatedOtp.innerHTML = otp;
+            }
+
+            expireTime();
+            si = setInterval(expireTime,1000);
+            document.getElementById("verifyBtn").disabled = false;
+            document.getElementById("resend").disabled = true;
+        }
+
+        function doVerify(){
+            var generatedOtp = document.getElementById("otp");
+            var gotOtp = generatedOtp.innerHTML;
+            var enteredOtp = document.getElementById("enterOtp").value;
+            var message = document.getElementById("msg");
+            if(gotOtp===enteredOtp){
+                message.innerHTML = "OTP is Verified.";
+                message.style.color = "green";
+            }else{
+                message.innerHTML = "Incorrect OTP.";
+                message.style.color = "red";
+            }
+        }
+
+        function resendOtp(){
+            var message = document.getElementById("msg");
+            doGenerateOtp();
+            message.innerHTML="";
+        }
+    </script>
+</head>
+
+<body>
+     <h2>Generate OTP</h2>
+     <button type="button" onclick="doGenerateOtp()">Get OTP</button>
+     <p id="otp"></p>
+     <p id="remainingTime"></p>
+     Enter OTP: <input type="text"  id="enterOtp"> <br><br>
+     <button type="button" id="verifyBtn" onclick="doVerify()">Verify</button> <br><br>
+     <span id="msg"></span> <br><br>
+     <button id="resend" onclick="resendOtp()">Resend OTP</button>
+
+</body>
+
+</html>

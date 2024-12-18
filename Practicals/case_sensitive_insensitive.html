@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical</title>
+    <script>
+        var strings = ["Vaishu", "sheela", "Dhanasekar", "Arun"];
+
+        function checkString() {
+            var inputString = document.getElementById("inputString").value;
+
+            var alreadyTaken = strings.indexOf(inputString) !== -1;
+
+            var resultElement = document.getElementById("result1");
+
+            if (alreadyTaken) {
+                resultElement.innerHTML = "The Name is already taken.";
+                resultElement.style.color = "red";
+            } else {
+                resultElement.innerHTML = "The Name is available.";
+                resultElement.style.color = "green";
+            }
+        }
+
+        function checkStringCaseInsensitive() {
+            var inputString = document.getElementById("inputStrings").value;
+
+            var alreadyTaken = strings.findIndex(function (str) {
+                return str.toLowerCase() === inputString.toLowerCase();
+            });
+
+            var resultElement = document.getElementById("result2");
+
+            if (alreadyTaken !== -1) {
+                resultElement.innerHTML = "The Name is already taken.";
+                resultElement.style.color = "red";
+            } else {
+                resultElement.innerHTML = "The Name is available.";
+                resultElement.style.color = "green";
+            }
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Username check in case sensitive</h1>
+    Registered users:
+    <p id="stringnames"></p>
+    Username: <input type="text" id="inputString" onblur="checkString()"> <br><br>
+    <span id="result1"></span>
+
+    <hr>
+
+    <h1>Username check in case Insensitive</h1>
+    Registered users:
+    <p id="stringname"></p>
+    Username: <input type="text" id="inputStrings" onblur="checkStringCaseInsensitive()"> <br><br>
+    <span id="result2"></span>
+    <script>
+        document.getElementById('stringnames').innerHTML=strings;
+        document.getElementById('stringname').innerHTML = strings;
+    </script>
+</body>
+
+</html>

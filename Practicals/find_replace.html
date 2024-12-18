@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find and Replace</title>
+    <script>
+        var str = "Vaishu,arun,Arun,Sheela,Ram";
+        function doReplace() {
+            var findText = document.getElementById("findText").value;
+            var replaceText = document.getElementById("replaceText").value;
+
+            if (findText && replaceText) {
+                var newStr = str.replace(new RegExp(findText, "g"), replaceText);
+                document.getElementById("res").innerHTML = newStr;
+                document.getElementById("res").style.color="green";
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Find and Replace</h1>
+    <p id="name"></p>
+    Find: <input type="text" id="findText"> <br><br>
+    Replace: <input type="text" id="replaceText"> <br><br>
+
+   
+    <button type="button" onclick="doReplace()">Replace</button> <br><br>
+
+    Result: <span id="res"></span>
+
+    <script>
+        document.getElementById('name').innerHTML = str;
+    </script>
+</body>
+
+</html>

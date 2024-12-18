@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnMouseOver</title>
+    <script>
+        function doMouseOver(imagePath) {
+             document.getElementById("imgRes").src = imagePath;
+        }
+
+    </script>
+</head>
+
+<body>
+    <img src="Butterfly1.jpg" id="imgRes" style="height: 400px;width: 400px;"><br>
+
+
+
+    <img src="Butterfly1.jpg" alt="" id="img1" style="height: 200px;width: 200px;" onmouseover="doMouseOver(this.src)">
+    <img src="Butterfly2.jpg" alt="" id="img2" style="height: 200px;width: 200px;" onmouseover="doMouseOver(this.src)">
+    <img src="Butterfly3.jpg" alt="" id="img3" style="height: 200px;width: 200px;" onmouseover="doMouseOver(this.src)">
+    <img src="Butterfly4.jpg" alt="" id="img4" style="height: 200px;width: 200px;" onmouseover="doMouseOver(this.src)">
+    <img src="Butterfly5.jpg" alt="" id="img5" style="height: 200px;width: 200px;" onmouseover="doMouseOver(this.src)">
+
+</body>
+
+</html>

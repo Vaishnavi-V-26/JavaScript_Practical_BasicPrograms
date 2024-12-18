@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP</title>
+    <script>
+        function doGenerateOtp(generateOtp) {
+            var otp = Math.round(Math.random() * 10000);
+            var generatedOtp;
+            switch (generateOtp) {
+                case "getOtp":
+                    generatedOtp = document.getElementById("otp");
+                    var strOtp = otp.toString();
+                    if (strOtp.length < 4) {
+                        otp = strOtp + "0";
+                        generatedOtp.innerHTML = otp;
+                    } else {
+                        generatedOtp.innerHTML = otp;
+                    }
+                
+                    break;
+
+                case "verify":
+                    generatedOtp = document.getElementById("otp");
+                    var enteredOtp = document.getElementById("enterOtp").value;
+                    var message = document.getElementById("msg");
+                    var gotOtp = generatedOtp.innerHTML;
+                    if (enteredOtp === gotOtp) {
+                        message.innerHTML = "OTP is Verified Successfully.";
+                        message.style.color = "green";
+                    } else {
+                        message.innerHTML = "Enter correct OTP";
+                        message.style.color = "red";
+                    }
+                    break;
+                }
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Generate OTP</h1>
+    <button type="button" id="getOtp" onclick="doGenerateOtp('getOtp')">Get OTP</button> 
+    <p id="otp"></p> 
+    Enter OTP: <input type="text" id="enterOtp"><br><br>
+    <button type="button" id="verifyOtp" onclick="doGenerateOtp('verify')">Verify</button>
+    <span id="msg"></span>
+    
+   
+    
+ 
+</body>
+
+</html>

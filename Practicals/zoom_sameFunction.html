@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZoomIn_ZoomOut </title>
+    <script>
+        function doZoom(zooming) {
+            var imgObj, eHeight, eWidth, nHeight, nWidth, message;
+            switch (zooming) {
+                case "zoomIn":
+
+                    imgObj = document.getElementById("js_logo");
+                    eHeight = imgObj.style.height;
+                    eWidth = imgObj.style.width;
+
+                    nHeight = parseInt(eHeight) + 50 + "px";
+                    nWidth = parseInt(eWidth) + 50 + "px";
+
+                    message = document.getElementById("msg");
+
+                    if (parseInt(nHeight) <= 500) {
+                        imgObj.style.height = nHeight;
+                        imgObj.style.width = nWidth;
+                    } else {
+                        message.innerHTML = "ZoomIn limit has been Reached";
+                        message.style.color = "red";
+                    }
+                    break;
+
+                case "zoomOut":
+
+                    imgObj = document.getElementById("js_logo");
+                    eHeight = imgObj.style.height;
+                    eWidth = imgObj.style.width;
+
+                    nHeight = parseInt(eHeight) - 50 + "px";
+                    nWidth = parseInt(eWidth) - 50 + "px";
+
+                    message = document.getElementById("msg");
+
+                    if (parseInt(nHeight) >= 100) {
+                        imgObj.style.height = nHeight;
+                        imgObj.style.width = nWidth;
+                    } else {
+                        message.innerHTML = "ZoomOut limit has been Reached";
+                        message.style.color = "red";
+                    }
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <img src="JS logo.jpeg" id="js_logo" style="height: 300px; width: 300px;"> <br><br>
+
+    <button type="button" id="zoomIn" onclick="doZoom('zoomIn')">Zoom In</button> &nbsp;
+    <button type="button" id="zoomOut" onclick="doZoom('zoomOut')">Zoom Out</button> <br>
+    <p id="msg"></p>
+</body>
+
+</html>

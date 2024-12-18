@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnKeyPress</title>
+    <script>
+         function doEnterVowels(event){
+            var data = "aeiou";
+            var res = document.getElementById("character").value;
+            if(data.indexOf(event.key)<0){
+                res =res;
+                return false;
+            }
+           /* if (data.includes(event.key)){
+                console.log(event);
+                document.getElementById("alert").innerHTML="";
+            }else{
+                 event.preventDefault();
+                 document.getElementById("alert").innerHTML="Enter Only Vowels.";
+                 document.getElementById("alert").style.color="red";
+             }*/
+
+         }
+    </script>
+</head>
+<body>
+    <h2>Only Vowels Letters</h2>
+    Enter the Characters: <input type="text" name="" id="character" onkeypress="return doEnterVowels(event)">
+    <span id="alert"></span>
+</body>
+</html>

@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9cfcf;
+    text-align: center;
+}
+
+h1 {
+    background-color: #400544;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+#list {
+    margin-left: 500px;
+    margin-right: 550px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+li {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+
+
+button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-left: 50px;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #080808;
+    color: #fff
+}
+
+#search {
+    width: 300px;
+    padding: 5px;
+}
+
+#editList {
+    margin: 15px;
+    
+}
+#editList {
+    padding: 10px;
+    background-color:#c526d0;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    margin-left:550px ;
+    margin-right: 550px;
+    justify-content: center;
+    color: black;
+}
+
+
+#update {
+    background-color: rgb(56, 3, 56);
+    color: white;
+}
+
+#update:hover {
+    background-color: #f3f3f4;
+    color: black;
+}
+
+#msg {
+    color: red;
+    margin-left: 15px;
+}
+
+#count {
+    margin: 10px 15px;
+    font-weight: bold;
+}

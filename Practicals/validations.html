@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validations</title>
+    <script>
+        function doValidations(valid) {
+            var email, url, phoneNum , result1, output, message1,message2;
+            switch (valid) {
+                case "email":
+                    email = document.getElementById("e-mail").value;
+                    result1 = document.getElementById('res1');
+                    output = !!email.match(/^([a-zA-Z0-9_\-\.\$]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,12})$/);
+                    message1 = "E-mail ID is Valid.";
+                    message2 = "E-mail ID is Invalid.";
+                    break;
+
+                case "url":
+                    url = document.getElementById("url").value;
+                    result1 = document.getElementById('res2');
+                    output = !!url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\\=]*)/g);
+                    message1 = "URL is Valid.";
+                    message2 = "URL is Invalid.";
+                    break;
+
+                case "phoneNo":
+                    phoneNum = document.getElementById("phone").value;
+                    result1 = document.getElementById('res3');
+                    output = !!phoneNum.match(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/);
+                    message1 = "Phone Number is Valid.";
+                    message2 = "Phone Number is Invalid.";
+                    break;
+
+
+            }
+            if (output) {
+                result1.innerHTML = message1;
+                result1.style.color = "green";
+            } else {
+                result1.innerHTML = message2;
+                result1.style.color = "red";
+            }
+        }
+
+        function doTrim(){
+            var textbox , data , result; 
+            textbox = document.getElementById("data");
+            data = textbox.value;
+            result = data.trim();
+            textbox.value=result;
+            textbox.style.color = "green";
+            
+        }
+
+        function doUpperCase(){
+            var textbox , couponCode , result;
+            textbox = document.getElementById("coupon");
+            couponCode = textbox.value;
+            result = couponCode.toUpperCase();
+            textbox.value = result;
+            textbox.style.color="purple";
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h1>1.Validations</h1>
+    Email: <input type="text" id="e-mail" onblur="doValidations('email')"> &nbsp; <span id="res1"></span> <br><br>
+    URL: <input type="text" id="url" onblur="doValidations('url')">&nbsp; <span id="res2"></span> <br><br>
+    Phone No: <input type="text" id="phone" onblur="doValidations('phoneNo')">&nbsp; <span id="res3"></span> <br><br>
+
+    <h1>2.Trim</h1>
+    Data: <input type="text"  id="data" onblur="doTrim()">
+
+    <h1>3.Coupon</h1>
+    Coupon Value: <input type="text"  id="coupon" onblur="doUpperCase()">
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <script>
+        var array = ["Vaishu", "Arun", "Pradeep", "Sheela", "Shakthi", "Vicky"];
+        var arrayCharNum = ["Vaishu", "Arun", 100, 96, "Dhanasekar", 50, "Sheela", 12, 33];
+
+        function doDisplay(arr) {
+            var template = "<ul>";
+            for (var i = 0; i < arr.length; i++) {
+                template += "<li>" + arr[i] + "</li>";
+            }
+            template += "</ul>";
+            document.getElementById("arrNames").innerHTML = template;
+            document.getElementById("sortedArray").innerHTML = template;
+
+
+        }
+
+        function usernameCheckUsingFor(username) {
+            var message = document.getElementById("msg");
+            var isMatched = false;
+            for (var j = 0; j < array.length; j++) {
+                if (username.toLowerCase() == array[j].toLowerCase()) {
+                    isMatched = true;
+                    break;
+                }
+            }
+            if (!isMatched) {
+                message.innerHTML = "Congrats, the Username is available.";
+                message.style.color = "green";
+            } else {
+                message.innerHTML = "Sorry, the Username is already taken";
+                message.style.color = "red";
+            }
+        }
+
+        function usernameCheckWithoutLoop(usernames) {
+            var message1 = document.getElementById("msg1");
+            var arrayLowerCase = array.join().toLowerCase();
+            var usernamesLowerCase = usernames.toLowerCase();
+            if (arrayLowerCase.indexOf(usernamesLowerCase) !== -1) {
+                message1.innerHTML = "Sorry, the Username is already taken.";
+                message1.style.color = "red";
+            } else {
+                message1.innerHTML = "Congrats, the Username is available.";
+                message1.style.color = "green";
+            }
+        }
+
+        function doSort(op) {
+            var sortedArr = document.getElementById("sortedArray");
+            var sortArray = "<ul>";
+            switch (op) {
+                case "ascending":
+                    var ascendingArray = array.sort();
+                    for (var k = 0; k < ascendingArray.length; k++) {
+                        sortArray += "<li>" + ascendingArray[k] + "</li>";
+                    }
+                    sortArray += "</ul>";
+                    document.getElementById("sortedArray").innerHTML = sortArray;
+                    break;
+
+                case "descending":
+                    var descendingArray = array.sort().reverse();
+                    for (var k = 0; k < descendingArray.length; k++) {
+                        sortArray += "<li>" + descendingArray[k] + "</li>";
+                    }
+                    sortArray += "</ul>";
+                    document.getElementById("sortedArray").innerHTML = sortArray;
+                    break;
+
+            }
+        }
+
+        function separateCharNum() {
+            document.getElementById("numChar").innerHTML = arrayCharNum;
+            document.getElementById("numChar").style.color = "purple";
+            var chars = "";
+            var nums = "";
+            for (var i = 0; i < arrayCharNum.length; i++) {
+                if (typeof arrayCharNum[i] === "string") {
+                    chars += arrayCharNum[i] + ",";
+                } else {
+                    nums += arrayCharNum[i] + ",";
+                }
+            }
+            document.getElementById("char").innerHTML = chars;
+            document.getElementById("num").innerHTML = nums;
+
+        }
+
+
+    </script>
+</head>
+
+<body onload="doDisplay(array)">
+    <div id="arrNames"></div>
+    <h2>Username Check using For Loop as Case Insensitive.</h2>
+    Username: <input type="text" id="uname" onblur="usernameCheckUsingFor(this.value)">
+    <p id="msg"></p>
+
+    <h2>Username Check without Loop as Case Insensitive.</h2>
+    Username: <input type="text" id="unames" onblur="usernameCheckWithoutLoop(this.value)">
+    <p id="msg1"></p>
+
+    <h2>Sorting the Array.</h2>
+    <div id="sortedArray"></div>
+    <button type="button" id="ascending" onclick="doSort('ascending')">Ascending Order</button> &nbsp;
+    <button type="button" id="descending" onclick="doSort('descending')">Descending Order</button> &nbsp;
+
+    <h2>Separate Numbers and Charcters.</h2>
+    <div id="numChar"></div><br>
+    Names: <span id="char"></span> <br><br>
+    Numbers: <span id="num"></span> <br><br>
+    <button type="button" onclick="separateCharNum()">Char & Num</button>
+
+</body>
+
+</html>

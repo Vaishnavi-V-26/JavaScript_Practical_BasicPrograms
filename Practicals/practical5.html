@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Sensitive and Insensitive</title>
+    <script >
+        var userNames =["Vaishu", "sheela", "Arun", "ram","Dhanasekar"];
+        function caseSensitive(names){
+            var regex = new RegExp('^'+names +'$');
+            for(var i=0; i<userNames.length; i++){
+            if (regex.test(userNames[i])){
+                  
+                document.getElementById('res1').innerHTML="The Username is already taken";
+                document.getElementById('res1').style.color="red";
+                break;
+            }else{
+                document.getElementById('res1').innerHTML="Username is Successfully granted"; 
+                document.getElementById('res1').style.color="green";
+            }
+        }
+            
+        }
+        
+        
+        
+        function caseInsensitive(name){
+            var regex = new RegExp('^'+name +'$','i');
+            for(var i=0; i<userNames.length; i++){
+            if (regex.test(userNames[i])){
+                  
+                document.getElementById('res2').innerHTML="The Username is already taken";
+                document.getElementById('res2').style.color="red";
+                break;
+            }else{
+                document.getElementById('res2').innerHTML="Username is Successfully granted"; 
+                document.getElementById('res2').style.color="green";
+            }
+        }
+            
+        }
+    </script>
+        
+</head>
+<body>
+    <h1>1. Username check as case sensitive</h1>
+    Registered users: <p id="unames"></p>
+    Username: <input type="text" onblur="caseSensitive(this.value)"> <br><br>
+    <span id="res1"></span>
+
+    <hr>
+    <h1>1. Username check as case insensitive</h1>
+    Registered users: <p id="uname"></p>
+    Username: <input type="text" onblur="caseInsensitive(this.value)"> <br><br>
+    <span id="res2"></span>
+    
+    <script>
+        document.getElementById('unames').innerHTML=userNames;
+        document.getElementById('uname').innerHTML=userNames;
+    </script>
+        
+        
+        
+   
+</body>
+</html>

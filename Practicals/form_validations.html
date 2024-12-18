@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validations</title>
+    <script>
+        function doValidateForm() {
+
+            var username = document.getElementById("uname");
+            var usernameError = document.getElementById("usernameError");
+
+            var password = document.getElementById("password");
+            var passwordError = document.getElementById("passwordError");
+
+            var email = document.getElementById("email");
+            var emailError = document.getElementById("emailError");
+
+            if (username.value.trim() === "") {
+                usernameError.innerHTML = "Please enter the Username.";
+                usernameError.style.color = "red";
+                username.focus();
+                return false;
+            } else if (username.value.length < 3) {
+                usernameError.innerHTML = "Invalid Username. Username should be at least 3 characters long.";
+                usernameError.style.color = "red";
+                username.focus();
+                return false;
+            } else {
+                usernameError.innerHTML = "";
+            }
+
+
+
+            if (password.value.trim() === "") {
+                passwordError.innerHTML = "Please enter the Password.";
+                passwordError.style.color = "red";
+                password.focus();
+                return false;
+            } else if (!password.value.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/)) {
+                passwordError.innerHTML = "Password should be 8-16 characters long,containing atleast one lowercase,one uppercase,one digit,one special character";
+                passwordError.style.color = "red";
+                password.focus();
+                return false;
+            } else {
+                passwordError.innerHTML = "";
+            }
+
+
+            if (email.value.trim() === "") {
+                emailError.innerHTML = "Please enter the E-Mail ID.";
+                emailError.style.color = "red";
+                email.focus();
+                return false;
+            } else if (!email.value.match(/^([a-zA-Z0-9_\-\.\$]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,12})$/)) {
+                emailError.innerHTML = "Invalid E-Mail ID.";
+                emailError.style.color = "red";
+                email.focus();
+                return false;
+            } else {
+                emailError.innerHTML = "";
+            }
+
+       }
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Form Validation</h1>
+    <form action="form_validations.html" method="get" onsubmit="return doValidateForm()">
+        Username * : <input type="text" name="username" id="uname"> &nbsp; <span id="usernameError"></span> <br><br>
+        Password *: <input type="password" name="password" id="password"> &nbsp; <span id="passwordError"></span> <br><br>
+        Email *: <input type="text" name="mail-id" id="email"> &nbsp; <span id="emailError"></span> <br><br>
+        <button type="submit" id="register">Register</button>
+    </form>
+</body>
+
+</html>

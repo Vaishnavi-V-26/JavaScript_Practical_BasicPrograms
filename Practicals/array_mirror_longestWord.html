@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array(Mirror_LongestWord)</title>
+    <script>
+        var userArray = ["Vaishnavi","Pradeep","Sumathi","Dhanasekar","Subramaniyan","Arun","Sheela"];
+        
+        function doMirrorEffect(data){
+              var newArray = data.split("");
+              var reverseArray = newArray.reverse();
+              var str = reverseArray.join("");
+              document.getElementById("mirrorWord").innerHTML = str;
+              document.getElementById("mirrorWord").style.color = "green";
+            }
+
+        function doDisplay(){
+            var template = "<ul>";
+                for(var i=0 ; i < userArray.length ; i++){
+                    template += "<li>" + userArray[i] + "</li>";
+                }
+                template += "</ul>";
+                document.getElementById("list").innerHTML = template;
+        }
+
+        function toFindLongestWord(){
+            var longestWord = userArray.sort(function(str1,str2){
+                    return str2.length - str1.length;
+            });
+            document.getElementById("printLongestWord").innerHTML=longestWord[0];
+            document.getElementById("printLongestWord").style.color = "purple";
+        }
+
+        
+    </script>
+</head>
+<body onload="doDisplay()">
+    <h2>Mirror Effect.</h2>
+    Enter the Data: <input type="text" name="" id="dataName" onblur="doMirrorEffect(this.value)"> <br><br>
+    Mirror Effect: <span id="mirrorWord"></span>
+
+    <h2>Find the Longest Word in Array.</h2>
+    <div id="list"></div>
+    <button type="button" onclick="toFindLongestWord()">Find the Longest Word.</button><br><br>
+    The Longest word in Array:<p id="printLongestWord"></p>
+
+</body>
+</html>

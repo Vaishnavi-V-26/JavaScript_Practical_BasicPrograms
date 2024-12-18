@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator1</title>
+    <script>
+        function doAdd(){
+            var ip1 , ip2 , result;
+            ip1 = document.getElementById('num1').value;
+            ip2 = document.getElementById('num2').value;
+            
+            if (isNaN(ip1) || isNaN(ip2)){
+                alert("Please Enter a valid Number");
+        
+            }
+            else{
+                result = Number(ip1) + Number(ip2);
+                document.getElementById('res').innerHTML = result;
+                document.getElementById('res').style.color="green";
+            }
+        }
+        
+        function doSub(){
+            var ip1 , ip2 , result;
+            ip1 = document.getElementById('num1').value;
+            ip2 = document.getElementById('num2').value;
+            
+            if (isNaN(ip1) || isNaN(ip2)){
+                alert("Please Enter a valid Number");
+            }
+            else{
+                result = ip1 - ip2;
+                document.getElementById('res').innerHTML = result;
+                document.getElementById('res').style.color="green";
+            }
+        }
+        
+        function doMul(){
+            var ip1 , ip2 , result;
+            ip1 = document.getElementById('num1').value;
+            ip2 = document.getElementById('num2').value;
+            
+            if (isNaN(ip1) || isNaN(ip2)){
+                alert("Please Enter a valid Number");
+            }
+            else{
+                result = ip1 * ip2;
+                document.getElementById('res').innerHTML = result;
+                document.getElementById('res').style.color="green";
+            }
+        }
+       
+        function doDiv(){
+            var ip1 , ip2 , result;
+            ip1 = document.getElementById('num1').value;
+            ip2 = document.getElementById('num2').value;
+            
+            if (isNaN(ip1) || isNaN(ip2)){
+                alert("Please Enter a valid Number");
+            }
+            else{
+                result = ip1 / ip2;
+                document.getElementById('res').innerHTML = result;
+                document.getElementById('res').style.color="green";
+            }
+        }
+        
+    </script>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+<body>
+    Number 1: <input type="text"  id="num1"> <br><br>
+    Number 2: <input type="text"  id="num2"> <br><br>
+    <button type="button" onclick="doAdd()">Add</button>  &nbsp;
+    <button type="button" onclick="doSub()">Sub</button>  &nbsp;
+    <button type="button" onclick="doMul()">Mul</button>  &nbsp;
+    <button type="button" onclick="doDiv()">Division</button>  &nbsp; <br><br>
+    
+    Result: <span id="res" style="color: blue;">Result will appear here!!!</span> 
+</body>
+</html>
